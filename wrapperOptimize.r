@@ -25,6 +25,22 @@ out <- nlminb(obj$par,obj$fn,obj$gr)
 rep <- obj$report()
 # SD <- sderport(obj)
 
-plot(data$c_i)
+par(mfrow=c(2,2))
+plot(data$c_i,
+     ylab="'Carbon' (units unkn)")
 lines(exp(rep$chat_i))
+
+matplot(t(data$p_c),
+        pch=1,
+        ylab="Chemical proportions")
+matlines(t(rep$phat_c),
+         lty=1,
+         lwd=2)
+
+matplot(t(data$p_b),
+        pch=1,
+        ylab="Bacteria proportions")
+matlines(t(rep$phat_b),
+         lty=1,
+         lwd=2)
 
